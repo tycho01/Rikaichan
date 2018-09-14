@@ -211,7 +211,7 @@ function zipLoadDb(archive, termsLoaded) {
                 for (let i = 0; i <= index.banksCount; ++i) {
                     const bankFile = files[`Dict_${i}.json`];
                     if (!bankFile) {
-                        return Promise.reject('missing term bank in Dictionary file');
+                        return Promise.reject(JSON.stringify({ i: i, fname: `Dict_${i}.json`, keys: Object.keys(files), bankFile: bankFile })); // msg: 'missing term bank in Dictionary file', files: files, 
                     }
 
                     await bankFile.async('string').then(bankJson => {
